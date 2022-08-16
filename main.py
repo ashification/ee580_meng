@@ -25,6 +25,9 @@ from paho import mqtt
 ##############################################
 ## Define MQTT Broker app
 ##############################################
+
+#Username: SN20216371
+#PWD: EE580_alee
 # setting callbacks for different events to see if it works, print the message etc.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
@@ -52,7 +55,7 @@ client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
 # set username and password
 client.username_pw_set("SN20216371", "EE580_alee")
 # connect to HiveMQ Cloud on port 8883 (default for MQTT)
-client.connect("3a7064825d8d4ce68f4d17cdf59b41e1.s1.eu.hivemq.cloud", 8884)
+client.connect("3a7064825d8d4ce68f4d17cdf59b41e1.s1.eu.hivemq.cloud", 8883)
 
 # setting callbacks, use separate functions like above for better visibility
 client.on_subscribe = on_subscribe
@@ -63,7 +66,7 @@ client.on_publish = on_publish
 client.subscribe("tag_topic/tag1", qos=1)
 
 # a single publish, this can also be done in loops, etc.
-client.publish("tag_topic/tag1", payload="hot", qos=1)
+client.publish("tag_topic/tag1", payload="Intial message", qos=1)
 
 # loop_forever for simplicity, here you need to stop the loop manually
 # you can also use loop_start and loop_stop
@@ -105,7 +108,8 @@ def left(event):
     canvas.move(tag_object, x_coord, y_coord)
     # Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
-    #client.publish("tag_topic/tag1", payload=canvas.coords(tag_object)[0:2], qos=1)
+    client.publish("tag_topic/tag1", payload="left click", qos=1)
+    #str(canvas.coords(tag_object)[0:2])
 
 def right(event):
     x_coord = 10
@@ -140,8 +144,8 @@ simulator_window.bind("<Down>", down)
 #2_anchor = (60, 590)
 #3_anchor = (1140, 420)
 
+client.loop_start()
 #Run Window
 simulator_window.mainloop()
+client.loop_stop()
 
-#Username: SN20216371
-#PWD: EE580_alee

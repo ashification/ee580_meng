@@ -79,8 +79,11 @@ root.bind("<Left>", left)
 root.bind("<Right>", right)
 root.bind("<Up>", up)
 root.bind("<Down>", down)
-print("X coord = ", x_coord, " y coord = ", y_coord)
+#print("X coord = ", x_coord, " y coord = ", y_coord)
 
+#1_anchor = (60, 230)
+#2_anchor = (60, 590)
+#3_anchor = (1140, 420)
 
 #Run Window
 root.mainloop()

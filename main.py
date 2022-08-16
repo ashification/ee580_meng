@@ -81,6 +81,7 @@ root.bind("<Up>", up)
 root.bind("<Down>", down)
 #print("X coord = ", x_coord, " y coord = ", y_coord)
 
+## Anchor co-ords
 #1_anchor = (60, 230)
 #2_anchor = (60, 590)
 #3_anchor = (1140, 420)

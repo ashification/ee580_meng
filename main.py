@@ -97,8 +97,8 @@ simulator_window.title('RTLS Simulator')
 simulator_window.geometry("1340x810")
 
 #Definte Image
-bg = PhotoImage(file="C:/images/Floorplan_v3.png")
-tag = PhotoImage(file="C:/images/tag.png")
+bg = PhotoImage(file="Images/Floorplan_v3.png")
+tag = PhotoImage(file="Images/tag.png")
 
 #Define co-ordinates
 varwidth=800

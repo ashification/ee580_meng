@@ -115,7 +115,9 @@ def left(event):
     # Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="0", qos=1)
+    client.publish("actuator_topic/act1", payload="1", qos=1)
+    client.publish("actuator_topic/act2", payload="0", qos=1)
+    client.publish("actuator_topic/act3", payload="0", qos=1)
 
 
 def right(event):
@@ -125,7 +127,9 @@ def right(event):
     # Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="1", qos=1)
+    client.publish("actuator_topic/act1", payload="0", qos=1)
+    client.publish("actuator_topic/act2", payload="1", qos=1)
+    client.publish("actuator_topic/act3", payload="0", qos=1)
 
 
 def up(event):
@@ -136,6 +140,8 @@ def up(event):
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
     client.publish("actuator_topic/act1", payload="0", qos=1)
+    client.publish("actuator_topic/act2", payload="0", qos=1)
+    client.publish("actuator_topic/act3", payload="1", qos=1)
 
 
 def down(event):
@@ -145,7 +151,9 @@ def down(event):
     #Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="1", qos=1)
+    client.publish("actuator_topic/act1", payload="0", qos=1)
+    client.publish("actuator_topic/act2", payload="0", qos=1)
+    client.publish("actuator_topic/act3", payload="0", qos=1)
 
 simulator_window.bind("<Left>", left)
 simulator_window.bind("<Right>", right)

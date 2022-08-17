@@ -26,10 +26,13 @@
 #
 
 #Import the required libraries
+from datetime import datetime
 from tkinter import *
 import time
 import paho.mqtt.client as paho
 from paho import mqtt
+import sqlite3
+from time import sleep
 
 
 
@@ -86,6 +89,35 @@ client.subscribe("device_topic/device", qos=1)
 
 # a single publish, this can also be done in loops, etc.
 client.publish("tag_topic/tag1", payload="Intial message", qos=1)
+
+##############################################
+## Define Python SQL DB
+##############################################
+
+'''
+# Create the DB
+db_connection = sqlite3.connect('user_location_tracking.db')
+# Create Table
+db_cursor.execute("""CREATE TABLE tag_location (
+        tag_id text,
+        x_coord int,
+        y_coord int,
+        time_stamp int
+        )""")
+    db_connection.commit()
+    db_connection.close()
+
+def submit():
+    # Connect to the DB
+    db_connection = sqlite3.connect('user_location_tracking.db')
+    # Create a Cursor
+    db_cursor = db_connection.cursor()
+    db_cursor.execute("INSERT INTO tag_location VALUES (:tagid, : ")
+
+    db_connection.commit()
+    db_connection.close()
+'''
+
 
 ##############################################
 ## Define Python Simulator app
@@ -159,6 +191,14 @@ def down(event):
     canvas.move(tag_object, x_coord, y_coord)
     #Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
+    x1_coord = int(canvas.coords(tag_object)[1])
+    y1_coord = int(canvas.coords(tag_object)[2])
+    time1 = datetime.now()
+    sleep(1)
+    time2 = datetime.now()
+    timediff = time2 - time1
+    timediff_convert = int(timediff.total_seconds() * 1000)  # milliseconds
+    print( "x1", x1_coord, " y1 ", y1_coord, " timestamp ", timediff_convert)
     client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
     client.publish("actuator_topic/act1", payload="0", qos=1)
     client.publish("actuator_topic/act2", payload="0", qos=1)
@@ -173,6 +213,11 @@ simulator_window.bind("<Down>", down)
 #1_anchor = (60, 230)
 #2_anchor = (60, 590)
 #3_anchor = (1140, 420)
+
+## Door frame center co-ords
+# office = (420 450)
+# Box rm = (420 590)
+# Bed rm = (770 400)
 
 client.loop_start()
 #Run Window

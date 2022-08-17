@@ -1,6 +1,6 @@
 # ee580_meng
 
-The contetns of this repository are the source code and supporting documentation for submitted in 
+The contents of this repository are the source code and supporting documentation for submitted in 
 partial fulfilment of the requirements of the master’s degree in Electronic and Computer Engineering (MECE) of Dublin City University
 
 All content contained within this repository is my own unless stated (and cited) otherwise

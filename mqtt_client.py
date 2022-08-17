@@ -22,12 +22,12 @@ def on_message(client, userdata, msg):
     # remove non alphanuemeric characters
     trigger = int(re.sub('[^0-9]','', raw_payload))
     print (trigger)
-    if(trigger == 1):{
-     print("Turn ON LED")
-    }
-    if(trigger == 0 ):{
-     print("Turn Off LED")
-    }
+    if(msg.topic == "tag_topic/tag1"):
+        if(trigger == 1):
+         print("Turn ON RED LED")
+        if(trigger == 0 ):
+         print("Turn Off RED LED")
+
 
 
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31

@@ -1,4 +1,15 @@
-#
+ ##############################################
+# 		     Python DRTLS simulator	          #
+# ------------------------------------------  #
+# This purpose of this script is to simulate  #
+# The Decawave web manager, live tag tracking #
+# and the broadcasting of tag co-ordinates    #
+# ------------------------------------------  #
+# Links for code sources where adaptions are  #
+# made are inline with sections used          #
+ ##############################################
+
+
 # Copyright 2021 HiveMQ GmbH
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,31 +34,30 @@ from paho import mqtt
 
 
 ##############################################
-## Define MQTT Broker app
+## MQTT Broker code
+## Code adapted from https://console.hivemq.cloud/clients/python-paho?uuid=3a7064825d8d4ce68f4d17cdf59b41e1
 ##############################################
 
-#Username: SN20216371
-#PWD: EE580_alee
-# setting callbacks for different events to see if it works, print the message etc.
+# when a connection acknowledgement event occurs print function message.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
 
-# with this callback you can see if your publish was successful
+# On publish event print value for TS
 def on_publish(client, userdata, mid, properties=None):
     print("mid: " + str(mid))
 
-# print which topic was subscribed to
+# On subscribe event print values for confirmation
 def on_subscribe(client, userdata, mid, granted_qos, properties=None):
     print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
-# print message, useful for checking if it was successful
+# On message event print values for confirmation
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
 # userdata is user defined data of any type, updated by user_data_set()
 # client_id is the given name of the client
-client = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
+client = paho.Client(client_id="Python Simulator", userdata=None, protocol=paho.MQTTv5)
 client.on_connect = on_connect
 
 # enable TLS for secure connection
@@ -68,10 +78,6 @@ client.subscribe("tag_topic/tag1", qos=1)
 # a single publish, this can also be done in loops, etc.
 client.publish("tag_topic/tag1", payload="Intial message", qos=1)
 
-# loop_forever for simplicity, here you need to stop the loop manually
-# you can also use loop_start and loop_stop
-#client.loop_forever()
-
 ##############################################
 ## Define Python Simulator app
 ##############################################
@@ -88,8 +94,8 @@ tag = PhotoImage(file="C:/images/tag.png")
 #Define co-ordinates
 varwidth=800
 varheight=500
-x_coord=varwidth//2
-y_coord=varheight//2
+x_coord=580
+y_coord=630
 
 #create canvas
 canvas = Canvas(simulator_window, width=varwidth, height=varheight)

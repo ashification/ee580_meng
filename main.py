@@ -58,6 +58,13 @@ def on_message(client, userdata, msg):
 # userdata is user defined data of any type, updated by user_data_set()
 # client_id is the given name of the client
 client = paho.Client(client_id="Python Simulator", userdata=None, protocol=paho.MQTTv5)
+
+# LWT Message set up before connection est
+lwt="Simulator Offline" # Last will message
+lwt_post_topic="device_topic/device"
+print("Setting Last will message=",lwt,"topic is",lwt_post_topic )
+client.will_set(lwt_post_topic, lwt,1,retain=False)
+
 client.on_connect = on_connect
 
 # enable TLS for secure connection
@@ -74,6 +81,8 @@ client.on_publish = on_publish
 
 # subscribe to all topics of encyclopedia by using the wildcard "#"
 client.subscribe("tag_topic/tag1", qos=1)
+client.subscribe("actuator_topic/#", qos=1)
+client.subscribe("device_topic/device", qos=1)
 
 # a single publish, this can also be done in loops, etc.
 client.publish("tag_topic/tag1", payload="Intial message", qos=1)

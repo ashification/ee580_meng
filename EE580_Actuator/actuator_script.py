@@ -15,7 +15,8 @@ GPIO.setup(26,GPIO.OUT) # Blue
 # setting callbacks for different events to see if it works, print the message etc.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
-
+    GPIO.output(6,GPIO.HIGH)# Red
+	
 # with this callback you can see if your publish was successful
 def on_publish(client, userdata, mid, properties=None):
     print("mid: " + str(mid))
@@ -28,28 +29,56 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     raw_payload = str(msg.payload)
-    # remove non alphanuemeric characters
-    trigger = int(re.sub('[^0-9]','', raw_payload))
-    print (trigger)
-    if(trigger == 1):
-     print("Turn ON LED")
-     # set GPIO pins to HIGH
-     GPIO.output(6,GPIO.HIGH)
-     GPIO.output(13,GPIO.HIGH)
-     GPIO.output(19,GPIO.HIGH)
-     GPIO.output(26,GPIO.HIGH)
-    if(trigger == 0 ):
-     print("Turn Off LED")
-     # set GPIO pins to Low
-     GPIO.output(6,GPIO.LOW)
-     GPIO.output(13,GPIO.LOW)
-     GPIO.output(19,GPIO.LOW)
-     GPIO.output(26,GPIO.LOW)
-
+    if(msg.topic == "actuator_topic/*"):
+	 trigger = int(re.sub('[^0-9]','', raw_payload)) # remove non alphanuemeric characters
+	 print (trigger)
+    if(msg.topic == "device_topic/device"):
+	 message = raw_payload #[1:-1]
+	 print (message)
+    
+    if(msg.topic == "actuator_topic/act1"):
+	if(trigger == 1):
+	 print("Turn ON Orange LED")
+	 # set GPIO pin to HIGH
+	 GPIO.output(13,GPIO.HIGH)# Orange
+	if(trigger == 0 ):
+	 print("Turn Off Orange LED")
+	 # set GPIO pin to Low
+	 GPIO.output(13,GPIO.LOW)# Orange
+    if(msg.topic == "actuator_topic/act2"):
+	if(trigger == 1):
+	 print("Turn ON Yellow LED")
+	 # set GPIO pins to HIGH
+	 GPIO.output(19,GPIO.HIGH)# Yellow
+	if(trigger == 0 ):
+	 print("Turn Off Yellow LED")
+	 # set GPIO pins to Low
+	 GPIO.output(19,GPIO.LOW)# Yellow
+    if(msg.topic == "actuator_topic/act3"):
+	if(trigger == 1):
+	 print("Turn ON Blue LED")
+	 # set GPIO pins to HIGH
+	 GPIO.output(26,GPIO.HIGH)# Yellow
+	if(trigger == 0 ):
+	 print("Turn Off Blue LED")
+	 # set GPIO pins to Low
+	 GPIO.output(26,GPIO.LOW)# Yellow
+    if(msg.topic == "device_topic/device"):
+	if(message == "Simulator Offline"):
+	 print("Turn OFF Red LED")
+	 # set GPIO pin to HIGH
+	 GPIO.output(6,GPIO.LOW)# Red
+	
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
 # userdata is user defined data of any type, updated by user_data_set()
 # client_id is the given name of the client
-client = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
+client = paho.Client(client_id="Actuator", userdata=None, protocol=paho.MQTTv5)
+
+# LWT Message set up before connection est
+lwt="Actuator Offline" # Last will message
+lwt_post_topic="device_topic/device"
+print("Setting Last will message=",lwt,"topic is",lwt_post_topic )
+client.will_set(lwt_post_topic, lwt,1,retain=False)
 client.on_connect = on_connect
 
 # enable TLS for secure connection
@@ -65,8 +94,9 @@ client.on_message = on_message
 client.on_publish = on_publish
 
 		
-# subscribe to all topics of encyclopedia by using the wildcard "#"
-client.subscribe("actuator_topic/act1", qos=1)
+# subscribe to all actuator and device topics by using the wildcard "#"
+client.subscribe("actuator_topic/#", qos=1)
+client.subscribe("device_topic/#", qos=1)
 
 # a single publish, this can also be done in loops, etc.
 client.publish("device_topic/device", payload="Actuator Online", qos=1)

@@ -1,4 +1,4 @@
- ##############################################
+##############################################
 # 		     Python DRTLS simulator	          #
 # ------------------------------------------  #
 # This purpose of this script is to simulate  #
@@ -7,7 +7,7 @@
 # ------------------------------------------  #
 # Links for code sources where adaptions are  #
 # made are inline with sections used          #
- ##############################################
+##############################################
 
 
 # Copyright 2021 HiveMQ GmbH
@@ -25,8 +25,8 @@
 # limitations under the License.
 #
 
-#Import the required libraries
-from datetime import datetime
+# Import the required libraries
+from datetime import *
 from tkinter import *
 import time
 import paho.mqtt.client as paho
@@ -34,7 +34,12 @@ from paho import mqtt
 import sqlite3
 from time import sleep
 
-
+# Define co-ordinates for canvas item
+varwidth = 800
+varheight = 500
+x_coord = 580
+y_coord = 630
+n = 5
 
 ##############################################
 ## MQTT Broker code
@@ -45,17 +50,22 @@ from time import sleep
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
 
+
 # On publish event print value for TS
 def on_publish(client, userdata, mid, properties=None):
-   # print("mid: " + str(mid))
+    # print("mid: " + str(mid))
+    return
+
 
 # On subscribe event print values for confirmation
 def on_subscribe(client, userdata, mid, granted_qos, properties=None):
     print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
+
 # On message event print values for confirmation
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+
 
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
 # userdata is user defined data of any type, updated by user_data_set()
@@ -63,10 +73,10 @@ def on_message(client, userdata, msg):
 client = paho.Client(client_id="Python Simulator", userdata=None, protocol=paho.MQTTv5)
 
 # LWT Message set up before connection est
-lwt="Simulator Offline" # Last will message
-lwt_post_topic="device_topic/device"
-print("Setting Last will message=",lwt,"topic is",lwt_post_topic )
-client.will_set(lwt_post_topic, lwt,1,retain=False)
+lwt = "Simulator Offline"  # Last will message
+lwt_post_topic = "device_topic/device"
+print("Setting Last will message=", lwt, "topic is", lwt_post_topic)
+client.will_set(lwt_post_topic, lwt, 1, retain=False)
 
 client.on_connect = on_connect
 
@@ -107,7 +117,9 @@ db_cursor.execute("""CREATE TABLE tag_location (
     db_connection.commit()
     db_connection.close()
 '''
-def submit_todb():
+
+
+def submit_todb(x1_coord, y1_coord, time1):
     # Connect to the DB
     db_connection = sqlite3.connect('user_location_tracking.db')
     # Create a Cursor
@@ -117,11 +129,12 @@ def submit_todb():
                           'tagid': "tag_1",
                           'x1_coord': x1_coord,
                           'y1_coord': y1_coord,
-                          'date_time': datetime.now()
+                          'date_time': time1
                       })
 
     db_connection.commit()
     db_connection.close()
+
 
 def query_fromdb():
     # Connect to the DB
@@ -133,8 +146,8 @@ def query_fromdb():
     print(db_cursor.fetchone())
     current_oid = db_cursor.fetchone()[0]
     print(current_oid)
-    fifthoid = current_oid - 5
-    print(fifthoid)
+    nth_oid = current_oid - n
+    print(nth_oid)
 
     db_cursor.execute("""
                     SELECT *,oid 
@@ -142,27 +155,73 @@ def query_fromdb():
                     WHERE oid == ? 
                     ORDER BY oid DESC 
                     """,
-                      (fifthoid,))
-    print(db_cursor.fetchall()) #fetchmany, fetchone
+                      (nth_oid,))
+    print(db_cursor.fetchall())
+
+    db_cursor.execute("""
+                        SELECT x_coord
+                        FROM tag_location 
+                        WHERE oid == ? 
+                        ORDER BY oid DESC 
+                        """,
+                      (nth_oid,))
+    xn_coord = int(db_cursor.fetchone()[0])
+
+    db_cursor.execute("""
+                        SELECT y_coord
+                        FROM tag_location 
+                        WHERE oid == ? 
+                        ORDER BY oid DESC 
+                        """,
+                      (nth_oid,))
+    yn_coord = int(db_cursor.fetchone()[0])
+
+    db_cursor.execute("""
+                        SELECT time_stamp
+                        FROM tag_location 
+                        WHERE oid == ? 
+                        ORDER BY oid DESC 
+                        """,
+                      (nth_oid,))
+    timen = db_cursor.fetchone()[0]
+    print("x5 = ", xn_coord, " y5 = ", yn_coord, " timen = ", timen)
 
     db_connection.commit()
     db_connection.close()
+    return xn_coord, yn_coord, timen
 
-def speed_calc():
-    #slope calc
-    return
-def distance_calc():
-   ## To Do distance of current X Y to door 1 2 and 3
-    ## Anchor co-ords
-     # 1_anchor = (60, 230)
-     # 2_anchor = (60, 590)
-     # 3_anchor = (1140, 420)
+def speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen):
+    # calc average speed = distance/time
+    distance_covered = ((x1_coord - xn_coord) ** 2 + (y1_coord - yn_coord) ** 2) ** 0.5
+    time_taken = time1 - timen
+    print("time1 ", time1, " timen ", timen, " timediff ", time_taken, "distance covered ", distance_covered)
+    tag_speed = distance_covered/time_taken
+    print("speed = ", tag_speed)
+    return tag_speed
 
-     ## Door frame center co-ords
-     # office = (420 450)
-     # Box rm = (420 590)
-     # Bed rm = (770 400)
-    return
+
+def distance_calc(x1_coord, y1_coord, xn_coord, yn_coord):
+    ## To Do distance of current X Y to door 1 2 and 3
+    ## Door frame center co-ords
+    # office = (420 450)
+    x_office = 420
+    y_office = 450
+    # Box rm = (420 590)
+    x_boxrm = 420
+    y_boxrm = 590
+    # Bed rm = (770 400)
+    x_bedrm = 770
+    y_bedrm = 400
+
+    # distance between 2 pts = sqrt[(x1-x2)^2 + (y1-y2)^2]
+    distance_office = ((x1_coord - x_office) ** 2 + (y1_coord - y_office) ** 2) ** 0.5
+    distance_boxrm = ((x1_coord - x_boxrm) ** 2 + (y1_coord - y_boxrm) ** 2) ** 0.5
+    distance_bedrm = ((x1_coord - x_bedrm) ** 2 + (y1_coord - y_office) ** 2) ** 0.5
+
+    print ("office ", distance_office, " boxrm ", distance_boxrm, " bedrm ", distance_bedrm)
+    return distance_office, distance_boxrm, distance_bedrm
+
+
 ##############################################
 ## Define Python Simulator app
 ##############################################
@@ -172,95 +231,77 @@ simulator_window = Tk()
 simulator_window.title('RTLS Simulator')
 simulator_window.geometry("1340x810")
 
-#Definte Image
+# Definte Image
 bg = PhotoImage(file="Images/Floorplan_v3.png")
 tag = PhotoImage(file="Images/tag.png")
 
-#Define co-ordinates
-varwidth = 800
-varheight = 500
-x_coord = 580
-y_coord = 630
-x1_coord = x_coord
-y1_coord = y_coord
-
-
-#create canvas
+# create canvas
 canvas = Canvas(simulator_window, width=varwidth, height=varheight)
 canvas.pack(fill="both", expand=True)
 
-#Set canvas Background Image
-canvas.create_image(0,0, image=bg, anchor="nw")
+# Set canvas Background Image
+canvas.create_image(0, 0, image=bg, anchor="nw")
 
 # Define Tag
-#coordinates_tag = 200, 100, 250, 150  # x1, y1, x2, y2
-tag_object = canvas.create_oval(x_coord, y_coord, x_coord+30, y_coord+30, fill="#FFFF00")
+# coordinates_tag = 200, 100, 250, 150  # x1, y1, x2, y2
+tag_object = canvas.create_oval(x_coord, y_coord, x_coord + 30, y_coord + 30, fill="#FFFF00")
+
 
 def left(event):
     x_coord = -10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    # Get and Print the coordinates of the tag
-    client.publish("actuator_topic/act1", payload="1", qos=1)
-    client.publish("actuator_topic/act2", payload="0", qos=1)
-    client.publish("actuator_topic/act3", payload="0", qos=1)
+    tag_location_update()
 
 
 def right(event):
     x_coord = 10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    # Get and Print the coordinates of the tag
-    print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
-    client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="0", qos=1)
-    client.publish("actuator_topic/act2", payload="1", qos=1)
-    client.publish("actuator_topic/act3", payload="0", qos=1)
+    tag_location_update()
 
 
 def up(event):
     x_coord = 0
     y_coord = -10
     canvas.move(tag_object, x_coord, y_coord)
-    # Get and Print the coordinates of the tag
-    print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
-    client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="0", qos=1)
-    client.publish("actuator_topic/act2", payload="0", qos=1)
-    client.publish("actuator_topic/act3", payload="1", qos=1)
+    tag_location_update()
 
 
 def down(event):
     x_coord = 0
     y_coord = 10
     canvas.move(tag_object, x_coord, y_coord)
-    #Get and Print the coordinates of the tag
+    tag_location_update()
+
+def tag_location_update():
+    # Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     x1_coord = int(canvas.coords(tag_object)[0])
     y1_coord = int(canvas.coords(tag_object)[1])
-    print("x1", x1_coord, " y1 ", y1_coord,)
-    submit_todb()
-    query_fromdb()
-    '''
     time1 = datetime.now()
-    sleep(1)
-    time2 = datetime.now()
-    timediff = time2 - time1
-    timediff_convert = int(timediff.total_seconds() * 1000)  # milliseconds
-    print( "x1", x1_coord, " y1 ", y1_coord, " timestamp ", timediff_convert)
-    '''
-    client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    client.publish("actuator_topic/act1", payload="0", qos=1)
-    client.publish("actuator_topic/act2", payload="0", qos=1)
-    client.publish("actuator_topic/act3", payload="0", qos=1)
+    print("x1", x1_coord, " y1 ", y1_coord," time1 ", time1 )
+    currenttime = datetime.now()
+    time1 = (currenttime - datetime(1970, 1, 1)).total_seconds()
+    submit_todb(x1_coord, y1_coord, time1)
+    xn_coord, yn_coord, timen = query_fromdb()
+
+    tag_speed = speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen)
+    distance_office, distance_boxrm, distance_bedrm = distance_calc(x1_coord, y1_coord, xn_coord, yn_coord)
+
+    #client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
+    #client.publish("actuator_topic/act1", payload="0", qos=1)
+    #client.publish("actuator_topic/act2", payload="0", qos=1)
+    #client.publish("actuator_topic/act3", payload="0", qos=1)
+
 
 simulator_window.bind("<Left>", left)
 simulator_window.bind("<Right>", right)
 simulator_window.bind("<Up>", up)
 simulator_window.bind("<Down>", down)
 
-client.loop_start()
-#Run Window
-simulator_window.mainloop()
-client.loop_stop()
+while 1:
+    client.loop_start()
+    simulator_window.mainloop()
+    client.loop_stop()
 

@@ -269,7 +269,7 @@ canvas.create_image(0, 0, image=bg, anchor="nw")
 
 # Define Tag
 # coordinates_tag = 200, 100, 250, 150  # x1, y1, x2, y2
-tag_object = canvas.create_oval(x_coord, y_coord, x_coord + 30, y_coord + 30, fill="#FFFF00")
+tag_object = canvas.create_oval(x_coord, y_coord, x_coord + 30, y_coord + 30, fill="#00B050")
 
 
 def left(event):

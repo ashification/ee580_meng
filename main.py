@@ -73,7 +73,7 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 
 # On message event print values for confirmation
 def on_message(client, userdata, msg):
-    print("Message Event ", msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    #print("Message Event ", msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
     '''
        if (msg.topic == "tag_topic/tag1"):
         # Return JSON string to JSON object and extract variables
@@ -219,9 +219,9 @@ def speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen):
     # calc average speed = distance/time
     distance_covered = ((x1_coord - xn_coord) ** 2 + (y1_coord - yn_coord) ** 2) ** 0.5
     time_taken = time1 - timen
-    print("time1 ", time1, " timen ", timen, " timediff ", time_taken, "distance covered ", distance_covered)
+    #print("time1 ", time1, " timen ", timen, " timediff ", time_taken, "distance covered ", distance_covered)
     tag_speed = int(distance_covered / time_taken)
-    print("speed = ", tag_speed)
+    #print("speed = ", tag_speed)
     return tag_speed
 
 
@@ -276,28 +276,28 @@ def left(event):
     x_coord = -10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    tag_location_update()
+    #tag_location_update()
 
 
 def right(event):
     x_coord = 10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    tag_location_update()
+    #tag_location_update()
 
 
 def up(event):
     x_coord = 0
     y_coord = -10
     canvas.move(tag_object, x_coord, y_coord)
-    tag_location_update()
+    #tag_location_update()
 
 
 def down(event):
     x_coord = 0
     y_coord = 10
     canvas.move(tag_object, x_coord, y_coord)
-    tag_location_update()
+    #tag_location_update()
 
 
 def tag_location_update():
@@ -346,6 +346,10 @@ simulator_window.bind("<Left>", left)
 simulator_window.bind("<Right>", right)
 simulator_window.bind("<Up>", up)
 simulator_window.bind("<Down>", down)
+
+while 1:
+    tag_location_update()
+    time.sleep(1)
 
 client.loop_start()
 simulator_window.mainloop()

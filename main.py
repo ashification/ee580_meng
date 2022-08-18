@@ -276,43 +276,44 @@ def left(event):
     x_coord = -10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    #tag_location_update()
+    tag_location_update()
 
 
 def right(event):
     x_coord = 10
     y_coord = 0
     canvas.move(tag_object, x_coord, y_coord)
-    #tag_location_update()
+    tag_location_update()
 
 
 def up(event):
     x_coord = 0
     y_coord = -10
     canvas.move(tag_object, x_coord, y_coord)
-    #tag_location_update()
+    tag_location_update()
 
 
 def down(event):
     x_coord = 0
     y_coord = 10
     canvas.move(tag_object, x_coord, y_coord)
-    #tag_location_update()
+    tag_location_update()
 
 
 def tag_location_update():
     # Get and Print the coordinates of the tag
-    print("Tag Loc Update Funct")
-    #print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     x1_coord = int(canvas.coords(tag_object)[0])
     y1_coord = int(canvas.coords(tag_object)[1])
-    time1 = datetime.now()
-    #print("x1", x1_coord, " y1 ", y1_coord, " time1 ", time1)
     currenttime = datetime.now()
     time1 = (currenttime - datetime(1970, 1, 1)).total_seconds()
     submit_todb(x1_coord, y1_coord, time1)
+    print("Tag Loc Update Funct - x1", x1_coord, " y1 ", y1_coord, " time1 ", time1)
+def tag_location_post():
+    x1_coord = int(canvas.coords(tag_object)[0])
+    y1_coord = int(canvas.coords(tag_object)[1])
+    currenttime = datetime.now()
+    time1 = (currenttime - datetime(1970, 1, 1)).total_seconds()
     xn_coord, yn_coord, timen = query_fromdb()
-
     tag_speed = speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen)
     distance_office, distance_boxrm, distance_bedrm = distance_calc(x1_coord, y1_coord, xn_coord, yn_coord)
 
@@ -322,8 +323,9 @@ def tag_location_update():
     print(json_tag_data)
     #print(Tag_data(**json.loads(json_tag_data)))
     client.publish("tag_topic/tag1", payload=json_tag_data, qos=1)
-
-    # Return JSON string to JSON object and extract variables
+    simulator_window.after(500, tag_location_post)
+'''
+# Return JSON string to JSON object and extract variables
     deserial_json_tag_data = Tag_data(**json.loads(json_tag_data))
     tag_speed = deserial_json_tag_data.tag_speed
     distance_office = deserial_json_tag_data.distance_office
@@ -331,26 +333,16 @@ def tag_location_update():
     distance_bedrm = deserial_json_tag_data.distance_bedrm
     #print( tag_speed, " ", distance_office, " ", distance_boxrm, " ", distance_bedrm)
 
-    client.publish("tag_topic/tag1/distance_office", payload=distance_office, qos=1)
-    client.publish("tag_topic/tag1/distance_boxrm", payload=distance_boxrm, qos=1)
-    client.publish("tag_topic/tag1/distance_bedrm", payload=distance_bedrm, qos=1)
-    client.publish("tag_topic/tag1/speed", payload=tag_speed, qos=1)
-
-    # client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    # client.publish("actuator_topic/act1", payload="0", qos=1)
-    # client.publish("actuator_topic/act2", payload="0", qos=1)
-    # client.publish("actuator_topic/act3", payload="0", qos=1)
-
+'''
 
 simulator_window.bind("<Left>", left)
 simulator_window.bind("<Right>", right)
 simulator_window.bind("<Up>", up)
 simulator_window.bind("<Down>", down)
 
-while 1:
-    tag_location_update()
-    time.sleep(1)
-
 client.loop_start()
+simulator_window.after(500, tag_location_post)
 simulator_window.mainloop()
-client.loop_stop()
+
+
+

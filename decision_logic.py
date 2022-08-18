@@ -169,15 +169,15 @@ def fuzzylogic_funct(tag_speed, distance, door):
 def actuator_function(office_prob, boxrm_prob, bedrm_prob):
     if (office_prob >= threshold) & (office_prob > boxrm_prob) & (office_prob > bedrm_prob):
         client.publish("actuator_topic/act1", payload="1", qos=1)
-        time.sleep(0.5)
+        time.sleep(1)
         client.publish("actuator_topic/act1", payload="0", qos=1)
     if (boxrm_prob >= threshold) & (boxrm_prob > office_prob) & (boxrm_prob > bedrm_prob):
         client.publish("actuator_topic/act2", payload="1", qos=1)
-        time.sleep(0.5)
+        time.sleep(1)
         client.publish("actuator_topic/act2", payload="0", qos=1)
     if (bedrm_prob >= threshold) & (bedrm_prob > office_prob) & (bedrm_prob > boxrm_prob):
         client.publish("actuator_topic/act3", payload="1", qos=1)
-        time.sleep(0.5)
+        time.sleep(1)
         client.publish("actuator_topic/act3", payload="0", qos=1)
 
 

@@ -41,6 +41,7 @@ x_coord = 580
 y_coord = 630
 n = 5
 
+
 ##############################################
 ## MQTT Broker code
 ## Code adapted from https://console.hivemq.cloud/clients/python-paho?uuid=3a7064825d8d4ce68f4d17cdf59b41e1
@@ -98,7 +99,7 @@ client.subscribe("actuator_topic/#", qos=1)
 client.subscribe("device_topic/device", qos=1)
 
 # a single publish, this can also be done in loops, etc.
-client.publish("tag_topic/tag1", payload="Intial message", qos=1)
+client.publish("tag_topic/tag1", payload="Simulator Online", qos=1)
 
 ##############################################
 ## Define Python SQL DB
@@ -190,12 +191,13 @@ def query_fromdb():
     db_connection.close()
     return xn_coord, yn_coord, timen
 
+
 def speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen):
     # calc average speed = distance/time
     distance_covered = ((x1_coord - xn_coord) ** 2 + (y1_coord - yn_coord) ** 2) ** 0.5
     time_taken = time1 - timen
     print("time1 ", time1, " timen ", timen, " timediff ", time_taken, "distance covered ", distance_covered)
-    tag_speed = distance_covered/time_taken
+    tag_speed = int(distance_covered / time_taken)
     print("speed = ", tag_speed)
     return tag_speed
 
@@ -214,11 +216,11 @@ def distance_calc(x1_coord, y1_coord, xn_coord, yn_coord):
     y_bedrm = 400
 
     # distance between 2 pts = sqrt[(x1-x2)^2 + (y1-y2)^2]
-    distance_office = ((x1_coord - x_office) ** 2 + (y1_coord - y_office) ** 2) ** 0.5
-    distance_boxrm = ((x1_coord - x_boxrm) ** 2 + (y1_coord - y_boxrm) ** 2) ** 0.5
-    distance_bedrm = ((x1_coord - x_bedrm) ** 2 + (y1_coord - y_office) ** 2) ** 0.5
+    distance_office = int(((x1_coord - x_office) ** 2 + (y1_coord - y_office) ** 2) ** 0.5)
+    distance_boxrm = int(((x1_coord - x_boxrm) ** 2 + (y1_coord - y_boxrm) ** 2) ** 0.5)
+    distance_bedrm = int(((x1_coord - x_bedrm) ** 2 + (y1_coord - y_office) ** 2) ** 0.5)
 
-    print ("office ", distance_office, " boxrm ", distance_boxrm, " bedrm ", distance_bedrm)
+    print("office ", distance_office, " boxrm ", distance_boxrm, " bedrm ", distance_bedrm)
     return distance_office, distance_boxrm, distance_bedrm
 
 
@@ -274,13 +276,14 @@ def down(event):
     canvas.move(tag_object, x_coord, y_coord)
     tag_location_update()
 
+
 def tag_location_update():
     # Get and Print the coordinates of the tag
     print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     x1_coord = int(canvas.coords(tag_object)[0])
     y1_coord = int(canvas.coords(tag_object)[1])
     time1 = datetime.now()
-    print("x1", x1_coord, " y1 ", y1_coord," time1 ", time1 )
+    print("x1", x1_coord, " y1 ", y1_coord, " time1 ", time1)
     currenttime = datetime.now()
     time1 = (currenttime - datetime(1970, 1, 1)).total_seconds()
     submit_todb(x1_coord, y1_coord, time1)
@@ -289,10 +292,15 @@ def tag_location_update():
     tag_speed = speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen)
     distance_office, distance_boxrm, distance_bedrm = distance_calc(x1_coord, y1_coord, xn_coord, yn_coord)
 
-    #client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
-    #client.publish("actuator_topic/act1", payload="0", qos=1)
-    #client.publish("actuator_topic/act2", payload="0", qos=1)
-    #client.publish("actuator_topic/act3", payload="0", qos=1)
+    client.publish("tag_topic/tag1/distance_office", payload=distance_office, qos=1)
+    client.publish("tag_topic/tag1/distance_boxrm", payload=distance_boxrm, qos=1)
+    client.publish("tag_topic/tag1/distance_bedrm", payload=distance_bedrm, qos=1)
+    client.publish("tag_topic/tag1/speed", payload=tag_speed, qos=1)
+
+    # client.publish("tag_topic/tag1", payload=str(canvas.coords(tag_object)[0:2]), qos=1)
+    # client.publish("actuator_topic/act1", payload="0", qos=1)
+    # client.publish("actuator_topic/act2", payload="0", qos=1)
+    # client.publish("actuator_topic/act3", payload="0", qos=1)
 
 
 simulator_window.bind("<Left>", left)
@@ -304,4 +312,3 @@ while 1:
     client.loop_start()
     simulator_window.mainloop()
     client.loop_stop()
-

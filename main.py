@@ -33,6 +33,8 @@ import paho.mqtt.client as paho
 from paho import mqtt
 import sqlite3
 from time import sleep
+from typing import List
+import json
 
 # Define co-ordinates for canvas item
 varwidth = 800
@@ -40,6 +42,13 @@ varheight = 500
 x_coord = 580
 y_coord = 630
 n = 5
+
+class Tag_data(object):
+    def __init__(self, tag_speed: int, distance_office: int, distance_boxrm: int, distance_bedrm: int):
+        self.tag_speed = tag_speed
+        self.distance_office = distance_office
+        self.distance_boxrm = distance_boxrm
+        self.distance_bedrm = distance_bedrm
 
 
 ##############################################
@@ -50,7 +59,6 @@ n = 5
 # when a connection acknowledgement event occurs print function message.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
-
 
 # On publish event print value for TS
 def on_publish(client, userdata, mid, properties=None):
@@ -65,7 +73,22 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 
 # On message event print values for confirmation
 def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    print("Message Event ", msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    '''
+       if (msg.topic == "tag_topic/tag1"):
+        # Return JSON string to JSON object and extract variables
+        json_tag_data = msg.payload
+        deserial_json_tag_data = Tag_data(**json.loads(json_tag_data))
+        tag_speed = deserial_json_tag_data.tag_speed
+        distance_office = deserial_json_tag_data.distance_office
+        distance_boxrm = deserial_json_tag_data.distance_boxrm
+        distance_bedrm = deserial_json_tag_data.distance_bedrm
+        print(" Message Event contains ", tag_speed, " ", distance_office, " ", distance_boxrm, " ", distance_bedrm)
+        if (tag_speed != 0):
+            client.publish("actuator_topic/act1", payload="1", qos=1)
+        if (tag_speed == 0):
+            client.publish("actuator_topic/act1", payload="0", qos=1)
+    '''
 
 
 # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
@@ -99,7 +122,7 @@ client.subscribe("actuator_topic/#", qos=1)
 client.subscribe("device_topic/device", qos=1)
 
 # a single publish, this can also be done in loops, etc.
-client.publish("tag_topic/tag1", payload="Simulator Online", qos=1)
+client.publish("device_topic/device", payload="Simulator Online", qos=1)
 
 ##############################################
 ## Define Python SQL DB
@@ -279,11 +302,12 @@ def down(event):
 
 def tag_location_update():
     # Get and Print the coordinates of the tag
-    print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
+    print("Tag Loc Update Funct")
+    #print("Coordinates of the tag are:", canvas.coords(tag_object)[0:2])
     x1_coord = int(canvas.coords(tag_object)[0])
     y1_coord = int(canvas.coords(tag_object)[1])
     time1 = datetime.now()
-    print("x1", x1_coord, " y1 ", y1_coord, " time1 ", time1)
+    #print("x1", x1_coord, " y1 ", y1_coord, " time1 ", time1)
     currenttime = datetime.now()
     time1 = (currenttime - datetime(1970, 1, 1)).total_seconds()
     submit_todb(x1_coord, y1_coord, time1)
@@ -291,6 +315,21 @@ def tag_location_update():
 
     tag_speed = speed_calc(x1_coord, y1_coord, time1, xn_coord, yn_coord, timen)
     distance_office, distance_boxrm, distance_bedrm = distance_calc(x1_coord, y1_coord, xn_coord, yn_coord)
+
+    # Take data and convert to JSON object and serialise into string
+    tag1 = Tag_data(tag_speed, distance_office, distance_boxrm, distance_bedrm)
+    json_tag_data = json.dumps(tag1.__dict__)
+    print(json_tag_data)
+    #print(Tag_data(**json.loads(json_tag_data)))
+    client.publish("tag_topic/tag1", payload=json_tag_data, qos=1)
+
+    # Return JSON string to JSON object and extract variables
+    deserial_json_tag_data = Tag_data(**json.loads(json_tag_data))
+    tag_speed = deserial_json_tag_data.tag_speed
+    distance_office = deserial_json_tag_data.distance_office
+    distance_boxrm = deserial_json_tag_data.distance_boxrm
+    distance_bedrm = deserial_json_tag_data.distance_bedrm
+    #print( tag_speed, " ", distance_office, " ", distance_boxrm, " ", distance_bedrm)
 
     client.publish("tag_topic/tag1/distance_office", payload=distance_office, qos=1)
     client.publish("tag_topic/tag1/distance_boxrm", payload=distance_boxrm, qos=1)
@@ -308,7 +347,6 @@ simulator_window.bind("<Right>", right)
 simulator_window.bind("<Up>", up)
 simulator_window.bind("<Down>", down)
 
-while 1:
-    client.loop_start()
-    simulator_window.mainloop()
-    client.loop_stop()
+client.loop_start()
+simulator_window.mainloop()
+client.loop_stop()

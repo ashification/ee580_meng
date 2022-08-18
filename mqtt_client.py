@@ -2,7 +2,15 @@ import time
 import paho.mqtt.client as paho
 from paho import mqtt
 import re
+import json
 
+
+class Tag_data(object):
+    def __init__(self, tag_speed: int, distance_office: int, distance_boxrm: int, distance_bedrm: int):
+        self.tag_speed = tag_speed
+        self.distance_office = distance_office
+        self.distance_boxrm = distance_boxrm
+        self.distance_bedrm = distance_bedrm
 # setting callbacks for different events to see if it works, print the message etc.
 def on_connect(client, userdata, flags, rc, properties=None):
     print("CONNACK received with code %s." % rc)
@@ -18,15 +26,23 @@ def on_subscribe(client, userdata, mid, granted_qos, properties=None):
 # print message, useful for checking if it was successful
 def on_message(client, userdata, msg):
     print("Topic: "+msg.topic + " QOS:  " + str(msg.qos) + " Payload:  " + str(msg.payload))
-    raw_payload = str(msg.payload)
+    #raw_payload = str(msg.payload)
     # remove non alphanuemeric characters
-    trigger = int(re.sub('[^0-9]','', raw_payload))
-    print (trigger)
-    if(msg.topic == "tag_topic/tag1"):
-        if(trigger == 1):
-         print("Turn ON RED LED")
-        if(trigger == 0 ):
-         print("Turn Off RED LED")
+    #trigger = int(re.sub('[^0-9]','', raw_payload))
+    #print (trigger)
+    if (msg.topic == "tag_topic/tag1"):
+        # Return JSON string to JSON object and extract variables
+        json_tag_data = msg.payload
+        deserial_json_tag_data = Tag_data(**json.loads(json_tag_data))
+        tag_speed = deserial_json_tag_data.tag_speed
+        distance_office = deserial_json_tag_data.distance_office
+        distance_boxrm = deserial_json_tag_data.distance_boxrm
+        distance_bedrm = deserial_json_tag_data.distance_bedrm
+        print(" Message Event contains ", tag_speed, " ", distance_office, " ", distance_boxrm, " ", distance_bedrm)
+        if (tag_speed != 0):
+            client.publish("actuator_topic/act1", payload="1", qos=1)
+        if (tag_speed == 0):
+            client.publish("actuator_topic/act1", payload="0", qos=1)
 
 
 
@@ -52,7 +68,7 @@ client.on_publish = on_publish
 client.subscribe("tag_topic/tag1", qos=1)
 
 # a single publish, this can also be done in loops, etc.
-client.publish("tag_topic/tag1", payload="1", qos=1)
+#client.publish("tag_topic/tag1", payload="1", qos=1)
 
 # loop_forever for simplicity, here you need to stop the loop manually
 # you can also use loop_start and loop_stop

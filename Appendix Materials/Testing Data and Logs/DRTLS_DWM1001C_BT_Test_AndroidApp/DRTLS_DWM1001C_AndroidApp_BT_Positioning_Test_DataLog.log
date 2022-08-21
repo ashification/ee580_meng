@@ -1,0 +1,157 @@
+0.017: 0xDECA22304422C21E initial-position: x=3985 y=3364 z=0 q=100
+0.017: 0xDECA7730B5744997 initial-position: x=-1960 y=11599 z=0 q=100
+0.017: 0xDECAB6C8D4D2D09C initial-position: x=2553 y=0 z=0 q=100
+0.017: 0xDECA55C596B48FB9 initial-position: x=0 y=0 z=0 q=100
+2853.068: started location data observation of DC:B7:64:7C:C8:4A
+2854.033: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3396, quality=100}, 8FB9 distance=Distance{length=1082, quality=100}
+2855.120: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3405, quality=100}, 8FB9 distance=Distance{length=1139, quality=100}
+2856.087: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3382, quality=100}, 8FB9 distance=Distance{length=1068, quality=100}
+2857.057: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3372, quality=100}, 8FB9 distance=Distance{length=1068, quality=100}
+2858.038: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3283, quality=100}, 8FB9 distance=Distance{length=951, quality=100}
+2859.026: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3260, quality=100}, 8FB9 distance=Distance{length=1021, quality=100}
+2860.039: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3180, quality=100}, 8FB9 distance=Distance{length=1265, quality=100}
+2861.041: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3264, quality=100}, 8FB9 distance=Distance{length=1251, quality=100}
+2862.043: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=9224, quality=100}, D09C distance=Distance{length=3311, quality=100}, 8FB9 distance=Distance{length=932, quality=100}
+2863.129: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=1676, quality=100}, D09C distance=Distance{length=3049, quality=100}, 4997 distance=Distance{length=8058, quality=100}
+2864.044: 0xâ€¦C435 location data: position: x=-546 y=2491 z=304 q=98; distances: 8FB9 distance=Distance{length=2168, quality=100}, D09C distance=Distance{length=3588, quality=100}, 4997 distance=Distance{length=8821, quality=100}
+2865.046: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=2337, quality=100}, 4997 distance=Distance{length=7223, quality=100}, D09C distance=Distance{length=3715, quality=100}
+2866.081: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=2492, quality=100}, D09C distance=Distance{length=3958, quality=100}
+2867.048: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=6586, quality=100}
+2868.049: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=3231, quality=100}, 4997 distance=Distance{length=5982, quality=100}, D09C distance=Distance{length=4033, quality=100}
+2869.033: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4215, quality=100}, D09C distance=Distance{length=4548, quality=100}, 4997 distance=Distance{length=5644, quality=100}
+2870.035: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4858, quality=100}, D09C distance=Distance{length=5884, quality=100}, 4997 distance=Distance{length=5054, quality=100}
+2871.035: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=5748, quality=100}, 4997 distance=Distance{length=4974, quality=100}
+2872.036: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5256, quality=100}
+2873.072: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=6043, quality=100}, 4997 distance=Distance{length=5073, quality=100}, D09C distance=Distance{length=5598, quality=100}
+2874.039: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=6975, quality=100}, D09C distance=Distance{length=6160, quality=100}, 4997 distance=Distance{length=5598, quality=100}
+2875.027: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5124, quality=100}
+2876.043: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=6108, quality=100}, D09C distance=Distance{length=5809, quality=100}
+2877.061: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=6179, quality=100}
+2878.050: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5068, quality=100}, 8FB9 distance=Distance{length=6909, quality=100}
+2879.051: 0xâ€¦C435 location data: position: x=-120 y=3574 z=-8 q=93; distances: 8FB9 distance=Distance{length=6886, quality=100}, 4997 distance=Distance{length=5682, quality=100}, D09C distance=Distance{length=6928, quality=100}
+2880.038: 0xâ€¦C435 location data: position: x=-183 y=4266 z=-288 q=93; distances: 8FB9 distance=Distance{length=6455, quality=100}, 4997 distance=Distance{length=5602, quality=100}, D09C distance=Distance{length=7078, quality=100}
+2881.155: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7397, quality=100}, 4997 distance=Distance{length=5012, quality=100}, D09C distance=Distance{length=7050, quality=100}
+2882.054: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5096, quality=100}
+2883.107: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5284, quality=100}
+2884.040: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5284, quality=100}
+2885.044: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5251, quality=100}
+2886.096: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5293, quality=100}
+2887.047: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5223, quality=100}
+2888.049: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5312, quality=100}
+2889.034: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=6998, quality=100}
+2890.052: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5499, quality=100}
+2891.054: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5527, quality=100}
+2892.040: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5377, quality=100}
+2893.091: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5443, quality=100}
+2894.043: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5518, quality=100}
+2895.043: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5452, quality=100}
+2896.119: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5438, quality=100}
+2897.066: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5405, quality=100}
+2898.051: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5424, quality=100}
+2899.054: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5457, quality=100}
+2900.054: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5447, quality=100}
+2901.090: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5452, quality=100}
+2902.040: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5424, quality=100}
+2903.043: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5433, quality=100}
+2904.046: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5415, quality=100}
+2905.048: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5415, quality=100}
+2906.049: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=4825, quality=100}
+2907.034: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=4487, quality=100}
+2908.053: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3719, quality=100}
+2909.060: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7818, quality=100}, 4997 distance=Distance{length=3855, quality=100}
+2910.040: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3644, quality=100}
+2911.041: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3335, quality=100}
+2912.061: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3311, quality=100}
+2913.062: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3382, quality=100}
+2914.114: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3382, quality=100}
+2915.049: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3344, quality=100}
+2916.051: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3297, quality=100}
+2917.070: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3311, quality=100}
+2918.108: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3424, quality=100}
+2919.056: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3363, quality=100}
+2920.042: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3344, quality=100}
+2921.139: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3518, quality=100}
+2922.062: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3442, quality=100}
+2923.047: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3410, quality=100}
+2924.051: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=3813, quality=100}
+2925.101: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=4052, quality=100}
+2926.135: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7186, quality=100}, 4997 distance=Distance{length=4211, quality=100}
+2927.120: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7092, quality=100}, 4997 distance=Distance{length=4215, quality=100}
+2928.058: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7092, quality=100}, 4997 distance=Distance{length=4318, quality=100}
+2929.095: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=7022, quality=100}, 4997 distance=Distance{length=4351, quality=100}
+2930.043: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=4543, quality=100}, D09C distance=Distance{length=7682, quality=100}
+2931.062: 0xâ€¦C435 location data: position: x=-263 y=4921 z=46 q=94; distances: 8FB9 distance=Distance{length=6783, quality=100}, D09C distance=Distance{length=7406, quality=100}, 4997 distance=Distance{length=4844, quality=100}
+2932.065: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5200, quality=100}
+2933.066: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5433, quality=100}
+2935.052: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=5715, quality=100}
+2936.088: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=6001, quality=100}
+2937.140: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=6595, quality=100}
+2938.058: 0xâ€¦C435 location data: position: x=171 y=5013 z=-196 q=91; distances: 8FB9 distance=Distance{length=5171, quality=100}, 4997 distance=Distance{length=6843, quality=100}, D09C distance=Distance{length=5078, quality=100}
+2939.063: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4947, quality=100}, D09C distance=Distance{length=4787, quality=100}
+2940.082: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4581, quality=100}, 8FB9 distance=Distance{length=4581, quality=100}
+2941.131: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4862, quality=100}, 8FB9 distance=Distance{length=4497, quality=100}
+2942.066: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4267, quality=100}, 8FB9 distance=Distance{length=4370, quality=100}
+2943.068: 0xâ€¦C435 location data: position: x=299 y=4625 z=-632 q=81; distances: 4997 distance=Distance{length=8775, quality=100}, D09C distance=Distance{length=4384, quality=100}, 8FB9 distance=Distance{length=4023, quality=100}
+2944.072: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4543, quality=100}, D09C distance=Distance{length=4103, quality=100}
+2945.072: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4281, quality=100}, 8FB9 distance=Distance{length=3878, quality=100}
+2946.158: 0xâ€¦C435 location data: position: x=484 y=3941 z=-1275 q=79; distances: 4997 distance=Distance{length=10654, quality=100}, D09C distance=Distance{length=4019, quality=100}, 8FB9 distance=Distance{length=3864, quality=100}
+2947.110: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=3503, quality=100}, D09C distance=Distance{length=4075, quality=100}
+2948.096: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4262, quality=100}, 8FB9 distance=Distance{length=3700, quality=100}
+2949.147: 0xâ€¦C435 location data: position: x=851 y=3625 z=-1802 q=84; distances: 4997 distance=Distance{length=10312, quality=100}, D09C distance=Distance{length=4356, quality=100}, 8FB9 distance=Distance{length=4736, quality=100}
+2950.116: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=3518, quality=100}, D09C distance=Distance{length=4858, quality=100}
+2951.067: 0xâ€¦C435 location data: position: x=387 y=2914 z=-2195 q=86; distances: 4997 distance=Distance{length=11372, quality=100}, D09C distance=Distance{length=4965, quality=100}, 8FB9 distance=Distance{length=3607, quality=100}
+2952.102: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4534, quality=100}, D09C distance=Distance{length=6221, quality=100}
+2953.104: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=5228, quality=100}
+2954.156: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=5021, quality=100}
+2955.075: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4665, quality=100}
+2956.028: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4445, quality=100}
+2957.028: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4543, quality=100}
+2958.046: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4473, quality=100}
+2959.033: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=9820, quality=100}, 8FB9 distance=Distance{length=4342, quality=100}
+2960.035: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4314, quality=100}, 4997 distance=Distance{length=9543, quality=100}
+2961.037: 0xâ€¦C435 location data: position: x=-578 y=2791 z=-1707 q=97; distances: 8FB9 distance=Distance{length=4243, quality=100}, 4997 distance=Distance{length=9304, quality=100}, D09C distance=Distance{length=6502, quality=100}
+2962.038: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=5059, quality=100}, 4997 distance=Distance{length=8948, quality=100}
+2963.042: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=8723, quality=100}
+2964.042: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=3977, quality=100}, 4997 distance=Distance{length=8301, quality=100}
+2965.049: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4543, quality=100}, 4997 distance=Distance{length=8025, quality=100}
+2966.030: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4155, quality=100}, 4997 distance=Distance{length=7743, quality=100}
+2967.049: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=5330, quality=100}, 4997 distance=Distance{length=7612, quality=100}
+2968.050: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=7477, quality=100}, D09C distance=Distance{length=5110, quality=100}
+2969.121: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=5026, quality=100}, D09C distance=Distance{length=4398, quality=100}, 4997 distance=Distance{length=7612, quality=100}
+2970.072: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=5124, quality=100}
+2971.040: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4332, quality=100}, 8FB9 distance=Distance{length=6043, quality=100}
+2972.075: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4928, quality=100}
+2973.060: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4290, quality=100}, 8FB9 distance=Distance{length=5031, quality=100}
+2974.046: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3757, quality=100}
+2975.114: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3822, quality=100}
+2976.054: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3851, quality=100}
+2977.052: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3485, quality=100}, 8FB9 distance=Distance{length=4052, quality=100}
+2978.053: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3686, quality=100}, 8FB9 distance=Distance{length=4089, quality=100}
+2979.055: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3274, quality=100}, 8FB9 distance=Distance{length=4661, quality=100}
+2980.058: 0xâ€¦C435 location data: position: x=60 y=2659 z=-1947 q=77; distances: 4997 distance=Distance{length=10476, quality=100}, D09C distance=Distance{length=3546, quality=100}, 8FB9 distance=Distance{length=4019, quality=100}
+2981.061: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=3761, quality=100}, D09C distance=Distance{length=2974, quality=100}
+2982.061: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3747, quality=100}, 8FB9 distance=Distance{length=4468, quality=100}
+2983.129: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=9857, quality=100}, D09C distance=Distance{length=3297, quality=100}
+2984.148: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3583, quality=100}
+2985.050: 0xâ€¦C435 location data: position: x=731 y=2864 z=-1610 q=82; distances: 4997 distance=Distance{length=9402, quality=100}, D09C distance=Distance{length=3536, quality=100}, 8FB9 distance=Distance{length=4473, quality=100}
+2986.086: 0xâ€¦C435 location data: position: x=1230 y=3053 z=-1110 q=82; distances: 8FB9 distance=Distance{length=4548, quality=100}, D09C distance=Distance{length=3644, quality=100}, 4997 distance=Distance{length=9262, quality=100}
+2987.055: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=4145, quality=100}, D09C distance=Distance{length=3808, quality=100}
+2988.140: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=3846, quality=100}, 8FB9 distance=Distance{length=4225, quality=100}
+2989.075: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4445, quality=100}, 8FB9 distance=Distance{length=4675, quality=100}
+2990.077: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4084, quality=100}
+2991.079: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4642, quality=100}, 8FB9 distance=Distance{length=4572, quality=100}
+2992.064: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4174, quality=100}, 8FB9 distance=Distance{length=4586, quality=100}
+2993.137: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4642, quality=100}
+2994.050: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=4914, quality=100}, 8FB9 distance=Distance{length=5017, quality=100}
+2995.067: 0xâ€¦C435 location data: distances: D09C distance=Distance{length=5265, quality=100}, 8FB9 distance=Distance{length=5087, quality=100}
+2996.069: 0xâ€¦C435 location data: distances: 4997 distance=Distance{length=6548, quality=100}, 8FB9 distance=Distance{length=5242, quality=100}
+2997.073: 0xâ€¦C435 location data: position: x=1081 y=3761 z=-1089 q=94; distances: 8FB9 distance=Distance{length=5907, quality=100}, 4997 distance=Distance{length=6258, quality=100}, D09C distance=Distance{length=6174, quality=100}
+2998.073: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=6048, quality=100}, D09C distance=Distance{length=5832, quality=100}, 4997 distance=Distance{length=5996, quality=100}
+2999.074: 0xâ€¦C435 location data: distances: 8FB9 distance=Distance{length=6853, quality=100}, D09C distance=Distance{length=5804, quality=100}
+3000.080: 0xâ€¦C435 location data: position: x=1548 y=4399 z=-1024 q=93; distances: 4997 distance=Distance{length=6760, quality=100}, D09C distance=Distance{length=5879, quality=100}, 8FB9 distance=Distance{length=6516, quality=100}
+3001.061: 0xâ€¦C435 location data: position: x=1324 y=4483 z=-1498 q=90; distances: D09C distance=Distance{length=5879, quality=100}, 8FB9 distance=Distance{length=5602, quality=100}, 4997 distance=Distance{length=7903, quality=100}
+3002.079: 0xâ€¦C435 location data: position: x=1187 y=4750 z=-1328 q=95; distances: D09C distance=Distance{length=5884, quality=100}, 8FB9 distance=Distance{length=5663, quality=100}, 4997 distance=Distance{length=6689, quality=100}
+3003.065: 0xâ€¦C435 location data: position: x=927 y=4942 z=-545 q=91; distances: 8FB9 distance=Distance{length=5809, quality=100}, D09C distance=Distance{length=6286, quality=100}, 4997 distance=Distance{length=6680, quality=100}
+3003.288: stopped location data observation of DC:B7:64:7C:C8:4A, (C435)
+3040.474: started location data observation of DC:B7:64:7C:C8:4A
+3041.112: stopped location data observation of DC:B7:64:7C:C8:4A, (C435)

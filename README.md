@@ -10,3 +10,6 @@ Code at the root level running on the simulation node/PC
 
 Any issues or queries regarding the materials please reach me at aisling.lee32@mail.dcu.ie
 Project supervised by Dr Derek Molloy
+
+All appendix materials attached can also be found here if there are issues with accessing them
+https://1drv.ms/u/s!ApgORorE7L4PiMo7hFZsnK7LDfCSRw?e=Wkg4vy
